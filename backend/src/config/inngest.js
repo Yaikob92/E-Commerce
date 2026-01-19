@@ -18,7 +18,7 @@ const syncUser = inngest.createFunction(
       name: `${first_name || ""} ${last_name || ""}` || "User",
       imageUrl: image_url,
       addresses: [],
-      withlist: [],
+      wishlist: [],
     };
 
     await User.create(newUser);
