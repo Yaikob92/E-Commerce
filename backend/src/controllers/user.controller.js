@@ -14,6 +14,9 @@ export async function addAddress(req, res) {
     } = req.body;
 
     const user = req.user;
+    if (!fullName || !streetAddress || !city || !state || !zipCode) {
+      return res.status(400).json({ error: "Missing required address fields" });
+    }
 
     // if this is set as default, unset all other defaults
     if (isDefault) {
@@ -146,7 +149,7 @@ export async function removeFromWishlist(req, res) {
 
     // check if product is not in the wishlist
     if (!user.wishlist.includes(productId)) {
-      return res.status(400).json({ error: "Product is not even in wishlist" });
+      return res.status(400).json({ error: "Product not found in wishlist" });
     }
 
     user.wishlist.pull(productId);
