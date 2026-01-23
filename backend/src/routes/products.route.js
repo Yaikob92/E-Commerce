@@ -3,7 +3,7 @@ import { protectRoute } from "../middleware/auth.middleware.js";
 import {
   getAllProducts,
   getProductById,
-} from "../controllers/admin.controller.js";
+} from "../controllers/product.controller.js";
 
 const router = Router();
 
