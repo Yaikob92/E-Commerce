@@ -4,6 +4,7 @@ import { clerkMiddleware } from "@clerk/express";
 
 import { serve } from "inngest/express";
 import { functions, inngest } from "./config/inngest.js";
+import cors from "cors";
 
 import path from "path";
 import { connectDB } from "./config/db.js";
@@ -11,6 +12,7 @@ import { connectDB } from "./config/db.js";
 import adminRoutes from "./routes/admin.route.js";
 import userRoutes from "./routes/user.route.js";
 import orderRoutes from "./routes/order.route.js";
+import cartRoutes from "./routes/cart.route.js";
 import reviewRoutes from "./routes/review.route.js";
 import productRoutes from "./routes/products.route.js";
 
@@ -20,12 +22,14 @@ const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(clerkMiddleware());
+app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 
 app.use("/api/inngest", serve({ client: inngest, functions }));
 
 app.use("/api/admin", adminRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/cart", cartRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/products", productRoutes);
 
