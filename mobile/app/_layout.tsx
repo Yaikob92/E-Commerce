@@ -10,11 +10,16 @@ export default function RootLayout() {
   return (
     <ClerkProvider tokenCache={tokenCache}>
       <QueryClientProvider client={queryClient}>
-        <Stack
-          screenOptions={{
-            headerShown: false,
-          }}
-        />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen
+            name="(auth)/_layout"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="(tabs)/_layout"
+            options={{ headerShown: false }}
+          />
+        </Stack>
       </QueryClientProvider>
     </ClerkProvider>
   );
